@@ -1,0 +1,726 @@
+/* FAQ CSS - Bright Color Palette with Blue Focus */
+:root {
+    --bright-blue: #007bff;
+    --bright-green: #28a745;
+    --bright-red: #dc3545;
+    --bright-orange: #fd7e14;
+    --bright-yellow: #ffc107;
+    --bright-indigo: #6610f2;
+    --bright-pink: #e83e8c;
+    --bright-teal: #20c997;
+    --bright-cyan: #17a2b8;
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --text-dark: #212529;
+    --text-light: #6c757d;
+    --shadow: rgba(0, 0, 0, 0.15);
+    --dark-shadow: rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--light-gray);
+    color: var(--text-dark);
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 4px 15px var(--dark-shadow);
+    border: 3px solid white;
+    z-index: 1001;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px var(--dark-shadow);
+}
+
+.menu-toggle.active {
+    background: linear-gradient(135deg, var(--bright-red) 0%, #c82333 100%);
+    transform: rotate(90deg);
+}
+
+/* Collapsible Sections - HIDDEN BY DEFAULT */
+.collapsible-sections {
+    display: none;
+    position: relative;
+    z-index: 1000;
+}
+
+.collapsible-sections.active {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Language Selector */
+.language-selector {
+    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 6px 20px var(--shadow);
+    text-align: center;
+    border: 3px solid var(--bright-blue);
+}
+
+.language-selector label {
+    font-weight: 700;
+    color: white;
+    margin-right: 15px;
+    font-size: 1.1em;
+}
+
+#google_translate_element {
+    display: inline-block;
+}
+
+/* Timer Section */
+.timer-section {
+    background: linear-gradient(135deg, var(--white) 0%, #e9ecef 100%);
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px var(--shadow);
+    margin: 40px 0;
+    text-align: center;
+    border: 4px solid var(--bright-green);
+}
+
+.timer-section h2 {
+    background: linear-gradient(135deg, var(--bright-green) 0%, #1e7e34 100%);
+    border: 3px solid var(--bright-green);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.timer-section p {
+    font-size: 1.2em;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.timer-display {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: var(--bright-red);
+    margin: 25px 0;
+    font-family: 'Courier New', monospace;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 12px;
+    border: 3px solid var(--bright-red);
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.timer-controls button {
+    padding: 16px 35px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px var(--shadow);
+    border: 3px solid white;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-width: 150px;
+}
+
+#start-timer {
+    background: linear-gradient(135deg, var(--bright-green) 0%, #1e7e34 100%);
+}
+
+#pause-timer {
+    background: linear-gradient(135deg, var(--bright-yellow) 0%, #e0a800 100%);
+}
+
+#reset-timer {
+    background: linear-gradient(135deg, var(--bright-orange) 0%, #e55a00 100%);
+}
+
+.timer-controls button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px var(--dark-shadow);
+}
+
+/* Map Section */
+.map-section {
+    background: linear-gradient(135deg, var(--white) 0%, #e9ecef 100%);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px var(--shadow);
+    margin: 40px 0;
+    border: 4px solid var(--bright-teal);
+}
+
+.map-section h2 {
+    background: linear-gradient(135deg, var(--bright-teal) 0%, #199d7a 100%);
+    border: 3px solid var(--bright-teal);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.map-controls {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.map-controls button {
+    padding: 16px 35px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px var(--shadow);
+    border: 3px solid white;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-width: 200px;
+}
+
+#locate-me {
+    background: linear-gradient(135deg, var(--bright-teal) 0%, #199d7a 100%);
+}
+
+#find-hospitals {
+    background: linear-gradient(135deg, var(--bright-cyan) 0%, #138496 100%);
+}
+
+.map-controls button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px var(--dark-shadow);
+}
+
+.map-controls button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 5px 20px var(--shadow);
+    border: 3px solid var(--bright-teal);
+    background: #f8f9fa;
+}
+
+/* Ensure Leaflet tiles load properly */
+.leaflet-container {
+    background: transparent !important;
+    font-family: inherit !important;
+}
+
+.leaflet-control-zoom a {
+    background-color: white !important;
+    color: #333 !important;
+    border: 2px solid var(--bright-teal) !important;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 10px !important;
+    box-shadow: 0 5px 20px var(--shadow) !important;
+}
+
+.hospital-list {
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.loading {
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+    padding: 20px;
+    background: var(--light-gray);
+    border-radius: 12px;
+    font-size: 1.1em;
+    box-shadow: 0 4px 15px var(--shadow);
+    border: 2px solid var(--bright-blue);
+}
+
+.hospital-item {
+    background: var(--white);
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px var(--shadow);
+    border-left: 6px solid var(--bright-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hospital-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px var(--shadow);
+    border-left-color: var(--bright-teal);
+}
+
+.hospital-name {
+    font-weight: bold;
+    color: var(--bright-blue);
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+.hospital-address {
+    color: var(--text-light);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.hospital-distance {
+    color: var(--bright-green);
+    font-weight: 600;
+    font-size: 1em;
+}
+
+/* FAQ Container */
+.faq-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px var(--shadow);
+    border: 3px solid white;
+}
+
+.back-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px var(--dark-shadow);
+    background: linear-gradient(135deg, #0056b3 0%, var(--bright-blue) 100%);
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.faq-header h1 {
+    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px var(--shadow);
+    border: 4px solid var(--bright-blue);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 15px;
+    font-size: 2.5em;
+}
+
+.faq-header p {
+    background: linear-gradient(135deg, var(--bright-teal) 0%, #199d7a 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px var(--shadow);
+    font-weight: 600;
+    border: 3px solid var(--bright-teal);
+    font-size: 1.2em;
+}
+
+/* FAQ Items */
+.faq-item {
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 6px 20px var(--shadow);
+    border: 3px solid var(--bright-blue);
+}
+
+.faq-question {
+    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
+    color: white;
+    padding: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 1.2em;
+}
+
+.faq-question:hover {
+    background: linear-gradient(135deg, #0056b3 0%, var(--bright-blue) 100%);
+    transform: translateY(-2px);
+}
+
+.faq-question.active {
+    background: linear-gradient(135deg, var(--bright-teal) 0%, #199d7a 100%);
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+    font-size: 1.3em;
+}
+
+.faq-question.active i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 25px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    background: var(--white);
+    color: var(--text-dark);
+}
+
+.faq-answer.active {
+    padding: 25px;
+    max-height: 1000px;
+    border-top: 4px solid var(--bright-teal);
+}
+
+.faq-answer p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+.faq-answer ol, .faq-answer ul {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.faq-answer li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.faq-answer strong {
+    color: var(--bright-blue);
+}
+
+/* Visitor Counter */
+#visitor-counter {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    box-shadow: 0 6px 25px var(--dark-shadow);
+    font-weight: bold;
+    font-size: 0.9em;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border: 3px solid white;
+}
+
+#visitor-counter:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px var(--dark-shadow);
+}
+
+#visitor-count {
+    font-weight: 800;
+    font-size: 1.1em;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
+    color: white;
+    padding: 40px 20px 20px;
+    border-radius: 15px;
+    margin-top: 40px;
+    box-shadow: 0 8px 30px var(--dark-shadow);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-contact h3, .footer-faq h3, .footer-socials h3 {
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    color: var(--bright-yellow);
+}
+
+.footer-contact a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.footer-contact a:hover {
+    color: var(--bright-yellow);
+    text-decoration: underline;
+}
+
+.footer-faq {
+    flex: 1;
+    min-width: 300px;
+}
+
+.faq-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.faq-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.faq-link:hover {
+    color: var(--bright-yellow);
+    border-bottom: 2px solid var(--bright-yellow);
+    transform: translateX(5px);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    color: white;
+    font-size: 1.8em;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.3);
+    color: var(--bright-yellow);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 3px solid rgba(255,255,255,0.3);
+    font-weight: 700;
+    color: var(--bright-yellow);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .faq-container {
+        padding: 15px;
+    }
+    
+    .faq-header h1 {
+        font-size: 2em;
+        padding: 20px;
+    }
+    
+    .faq-header p {
+        font-size: 1.1em;
+        padding: 15px;
+    }
+    
+    .faq-question {
+        padding: 20px;
+        font-size: 1.1em;
+    }
+    
+    .faq-answer {
+        padding: 0 20px;
+    }
+    
+    .faq-answer.active {
+        padding: 20px;
+    }
+    
+    .back-button {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+    
+    .timer-display {
+        font-size: 2.8em;
+    }
+    
+    .map-controls, .timer-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .timer-controls button, .map-controls button {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    #visitor-counter {
+        bottom: 15px;
+        right: 15px;
+        font-size: 0.8em;
+        padding: 10px 16px;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    #map {
+        height: 350px;
+    }
+    
+    .menu-toggle {
+        top: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 480px) {
+    .faq-header h1 {
+        font-size: 1.8em;
+        padding: 15px;
+    }
+    
+    .faq-header p {
+        font-size: 1em;
+        padding: 12px;
+    }
+    
+    .faq-question {
+        padding: 15px;
+        font-size: 1em;
+    }
+    
+    .faq-answer p {
+        font-size: 1em;
+    }
+    
+    .timer-display {
+        font-size: 2.2em;
+    }
+    
+    #map {
+        height: 300px;
+    }
+    
+    .menu-toggle {
+        top: 10px;
+        right: 10px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.2em;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bright-blue);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bright-teal);
+}

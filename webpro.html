@@ -1,0 +1,133 @@
+<html>
+<head>
+    <title>First Aid Guide</title>
+    <script src="samplejs.js" defer></script>
+    <link rel="stylesheet" href="samplecss.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <div class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Collapsible Sections - Hidden by default -->
+    <div class="collapsible-sections" id="collapsibleSections">
+        <!-- Google Translate API -->
+        <div class="language-selector">
+            <label>Select Language:</label>
+            <div id="google_translate_element"></div>
+        </div>
+
+        <!-- Timer Section -->
+        <div class="timer-section">
+            <h2>First Aid Timer</h2>
+            <p>Use this timer for CPR compressions or other timed procedures</p>
+            <div class="timer-display" id="timer-display">00:00:00</div>
+            <div class="timer-controls">
+                <button id="start-timer">Start</button>
+                <button id="pause-timer">Pause</button>
+                <button id="reset-timer">Reset</button>
+            </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div class="map-section">
+            <h2>Find Nearby Hospitals</h2>
+            <div class="map-controls">
+                <button id="locate-me">Locate Me</button>
+                <button id="find-hospitals">Find Hospitals</button>
+            </div>
+            <div id="map"></div>
+            <div class="hospital-list" id="hospital-list">
+                <div class="loading">Click "Locate Me" to find hospitals near you</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+      <div class="header-container">
+        <img src="image4.png" alt="First Aid Logo" class="header-logo">
+        <h1 id="header-main">First Aid Quick Guide</h1>
+        <p id="sub-header">Immediate steps to take in common emergencies</p>
+    </div>
+    <br>
+    <a href="tel:102" id="call-emergency">Call Emergency Services(102)</a>
+    <br><br>
+    <h2 id="emergencies-heading">Common Emergencies</h2>
+    <br>
+
+    <!-- Search Bar -->
+    <input 
+        type="text" 
+        id="search-bar" 
+        placeholder="Search for an emergency..." 
+        onkeyup="searchEmergency()">
+    <br><br>
+
+    <div class="emergency-list">
+        <button onclick="window.location.href='webpro2.html'" id="btn-cuts">Cuts and Scrapes</button>
+        <button onclick="window.location.href='webpro3.html'" id="btn-burns">Minor Burns</button>
+        <button onclick="window.location.href='webpro4.html'" id="btn-choking">Choking</button>
+        <button onclick="window.location.href='webpro5.html'" id="btn-fractures">Fractures</button>
+        <button onclick="window.location.href='webpro6.html'" id="btn-heatstroke">Heat Stroke</button>
+        <button onclick="window.location.href='webpro7.html'" id="btn-poisoning">Poisoning</button>
+        <button onclick="window.location.href='webpro8.html'" id="btn-allergic">Allergic Reactions</button>
+        <button onclick="window.location.href='webpro9.html'" id="btn-nosebleeds">Nosebleeds</button>
+        <button onclick="window.location.href='webpro10.html'" id="btn-cpr">CPR</button>
+    </div>
+
+    <br>
+    <p id="disclaimer-text"><strong>Disclaimer:</strong> This is only for immediate first aid. For further complications please contact a doctor nearby asap.</p>
+    <br>
+
+    <!-- Visitor Counter -->
+    <div id="visitor-counter">
+        <span id="visitor-count">0</span> visitors
+    </div>
+
+    <!-- Footer -->
+  <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p><a href="tel:+919999999999">📞 +91 99999 99999</a></p>
+            </div>
+            <div class="footer-faq">
+                <h3>FAQ</h3>
+                <div class="faq-links">
+                    <a href="faq.html" class="faq-link">First Aid Questions</a>
+                    <a href="faq.html" class="faq-link">Emergency Procedures</a>
+                    <a href="faq.html" class="faq-link">CPR Guidelines</a>
+                    <a href="faq.html" class="faq-link">Treatment Methods</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Legal</h3>
+                <div class="legal-links">
+                    <a href="privacy-policy.html" class="faq-link">Privacy Policy</a>
+                    <a href="terms.html" class="faq-link">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-socials">
+                <h3>Follow</h3>
+                <div class="social-icons">
+                    <a href="https://instagram.com/your_profile" target="_blank" aria-label="Instagram" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/your_profile" target="_blank" aria-label="LinkedIn" class="social-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-bottom">© 2025 Emergency Assist. All Rights Reserved.</p>
+    </footer>
+
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

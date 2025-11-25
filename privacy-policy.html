@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Emergency Assist</title>
+    <link rel="stylesheet" href="samplecss.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <style>
+        :root {
+            --bright-blue: #007bff;
+            --bright-teal: #20c997;
+            --bright-yellow: #ffc107;
+            --bright-red: #dc3545;
+            --text-dark: #333;
+            --text-light: #666;
+            --light-gray: #e9ecef;
+            --shadow: rgba(0,0,0,0.1);
+            --dark-shadow: rgba(0,0,0,0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        /* Menu Toggle Styles */
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bright-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+            background: #0056b3;
+        }
+
+        .menu-toggle.active {
+            background: var(--bright-red);
+        }
+
+        /* Collapsible Sections */
+        .collapsible-sections {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px var(--shadow);
+            padding: 20px;
+            z-index: 999;
+            width: 350px;
+            max-height: 80vh;
+            overflow-y: auto;
+            display: none;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .collapsible-sections.active {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .language-selector, .timer-section, .map-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .language-selector:last-child, 
+        .timer-section:last-child, 
+        .map-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .language-selector label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Timer Styles */
+        .timer-display {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .timer-controls button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #start-timer {
+            background: var(--bright-teal);
+            color: white;
+        }
+
+        #pause-timer {
+            background: var(--bright-yellow);
+            color: var(--text-dark);
+        }
+
+        #reset-timer {
+            background: var(--bright-red);
+            color: white;
+        }
+
+        .timer-controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        /* Map Styles */
+        #map {
+            height: 200px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .map-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .map-controls button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            background: var(--bright-blue);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+
+        .map-controls button:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .hospital-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .hospital-item {
+            padding: 10px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hospital-item:hover {
+            background: var(--light-gray);
+            border-color: var(--bright-blue);
+        }
+
+        .hospital-name {
+            font-weight: bold;
+            color: var(--bright-blue);
+        }
+
+        .hospital-distance {
+            color: var(--bright-teal);
+            font-weight: 600;
+        }
+
+        .loading {
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+            padding: 20px;
+        }
+
+        /* Privacy Container Styles */
+        .privacy-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .privacy-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px var(--shadow);
+            line-height: 1.8;
+        }
+        
+        .privacy-section {
+            margin-bottom: 30px;
+        }
+        
+        .privacy-section h2 {
+            color: var(--bright-blue);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 2px solid var(--bright-teal);
+            padding-bottom: 10px;
+        }
+        
+        .privacy-section h3 {
+            color: var(--bright-teal);
+            margin: 20px 0 10px 0;
+            font-size: 1.2em;
+        }
+        
+        .privacy-section ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        .privacy-section li {
+            margin-bottom: 8px;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px var(--shadow);
+            border: 3px solid white;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px var(--dark-shadow);
+            background: linear-gradient(135deg, #0056b3 0%, var(--bright-blue) 100%);
+        }
+        
+        .last-updated {
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        /* Visitor Counter */
+        #visitor-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--bright-blue);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px var(--shadow);
+            z-index: 1000;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px 20px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer h3 {
+            color: var(--bright-teal);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--bright-teal);
+        }
+
+        .faq-links, .legal-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--bright-teal);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .privacy-container {
+                padding: 10px;
+            }
+            
+            .privacy-content {
+                padding: 20px;
+            }
+            
+            .collapsible-sections {
+                width: calc(100vw - 40px);
+                right: 20px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <div class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Collapsible Sections - Hidden by default -->
+    <div class="collapsible-sections" id="collapsibleSections">
+        <!-- Google Translate API -->
+        <div class="language-selector">
+            <label>Select Language:</label>
+            <div id="google_translate_element"></div>
+        </div>
+
+        <!-- Timer Section -->
+        <div class="timer-section">
+            <h2>First Aid Timer</h2>
+            <p>Use this timer for CPR compressions or other timed procedures</p>
+            <div class="timer-display" id="timer-display">00:00:00</div>
+            <div class="timer-controls">
+                <button id="start-timer">Start</button>
+                <button id="pause-timer">Pause</button>
+                <button id="reset-timer">Reset</button>
+            </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div class="map-section">
+            <h2>Find Nearby Hospitals</h2>
+            <div class="map-controls">
+                <button id="locate-me">Locate Me</button>
+                <button id="find-hospitals">Find Hospitals</button>
+            </div>
+            <div id="map"></div>
+            <div class="hospital-list" id="hospital-list">
+                <div class="loading">Click "Locate Me" to find hospitals near you</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Privacy Policy Content -->
+    <div class="privacy-container">
+        <a href="webpro.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Main Page
+        </a>
+        
+        <div class="privacy-header">
+            <h1>Privacy Policy</h1>
+            <p>How we protect and handle your information</p>
+        </div>
+        
+        <div class="privacy-content">
+            <div class="privacy-section">
+                <h2>Introduction</h2>
+                <p>Welcome to Emergency Assist. We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and safeguard your information when you use our first aid guidance website.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Information We Collect</h2>
+                
+                <h3>Personal Information</h3>
+                <p>We do not require you to create an account or provide personal information to use our basic first aid guidance services. However, we may collect:</p>
+                <ul>
+                    <li><strong>Location Data:</strong> Only when you explicitly use the "Locate Me" feature to find nearby hospitals</li>
+                    <li><strong>Usage Data:</strong> Anonymous information about how you interact with our website</li>
+                    <li><strong>Technical Information:</strong> Browser type, device type, and IP address for analytics</li>
+                </ul>
+                
+                <h3>Non-Personal Information</h3>
+                <ul>
+                    <li>Visitor count and general usage statistics</li>
+                    <li>Preferred language settings</li>
+                    <li>Pages visited and time spent on the site</li>
+                </ul>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>How We Use Your Information</h2>
+                <ul>
+                    <li>To provide first aid information and emergency guidance</li>
+                    <li>To locate nearby hospitals when requested</li>
+                    <li>To improve our website and services</li>
+                    <li>To understand how visitors use our site</li>
+                    <li>To ensure the security and proper functioning of our website</li>
+                </ul>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Location Services</h2>
+                <p>Our hospital locator feature uses your device's location only when you explicitly click the "Locate Me" button. We do not:</p>
+                <ul>
+                    <li>Store your location data on our servers</li>
+                    <li>Track your location continuously</li>
+                    <li>Share your location with third parties</li>
+                    <li>Use location data for any purpose other than finding nearby hospitals</li>
+                </ul>
+                <p>Location data is processed locally in your browser and is immediately discarded after use.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Third-Party Services</h2>
+                <h3>Google Translate</h3>
+                <p>We use Google Translate to provide multilingual support. Google may collect information as described in their Privacy Policy.</p>
+                
+                <h3>OpenStreetMap</h3>
+                <p>Our map feature uses OpenStreetMap tiles. Your interactions with the map are subject to OpenStreetMap's terms.</p>
+                
+                <h3>Leaflet.js</h3>
+                <p>We use Leaflet.js, an open-source JavaScript library, for map functionality.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Data Storage and Security</h2>
+                <ul>
+                    <li>We use local storage in your browser to maintain visitor count</li>
+                    <li>No personal data is stored on our servers</li>
+                    <li>All first aid content is static and doesn't require user data</li>
+                    <li>We implement appropriate security measures to protect your information</li>
+                </ul>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Your Rights</h2>
+                <p>You have the right to:</p>
+                <ul>
+                    <li>Access any personal information we might hold</li>
+                    <li>Request deletion of your data</li>
+                    <li>Opt-out of location services</li>
+                    <li>Use our website without providing any personal information</li>
+                </ul>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Cookies and Tracking</h2>
+                <p>We use minimal cookies and local storage for:</p>
+                <ul>
+                    <li>Visitor counter functionality</li>
+                    <li>Language preference settings</li>
+                    <li>Website performance optimization</li>
+                </ul>
+                <p>You can disable cookies in your browser settings, though this may affect some website features.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Children's Privacy</h2>
+                <p>Our website is designed to be safe for all ages. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us immediately.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+            </div>
+            
+            <div class="privacy-section">
+                <h2>Contact Us</h2>
+                <p>If you have any questions about this Privacy Policy, please contact us:</p>
+                <ul>
+                    <li>Email: privacy@emergencyassist.com</li>
+                    <li>Phone: +91 99999 99999</li>
+                    <li>Address: [Your Company Address]</li>
+                </ul>
+            </div>
+            
+            <div class="last-updated">
+                <p><strong>Last Updated:</strong> December 2024</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Visitor Counter -->
+    <div id="visitor-counter">
+        <span id="visitor-count">0</span> visitors
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p><a href="tel:+919999999999">📞 +91 99999 99999</a></p>
+            </div>
+            <div class="footer-faq">
+                <h3>FAQ</h3>
+                <div class="faq-links">
+                    <a href="faq.html" class="faq-link">First Aid Questions</a>
+                    <a href="faq.html" class="faq-link">Emergency Procedures</a>
+                    <a href="faq.html" class="faq-link">CPR Guidelines</a>
+                    <a href="faq.html" class="faq-link">Treatment Methods</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Legal</h3>
+                <div class="legal-links">
+                    <a href="privacy-policy.html" class="faq-link">Privacy Policy</a>
+                    <a href="terms.html" class="faq-link">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-socials">
+                <h3>Follow</h3>
+                <div class="social-icons">
+                    <a href="https://instagram.com/your_profile" target="_blank" aria-label="Instagram" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/your_profile" target="_blank" aria-label="LinkedIn" class="social-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-bottom">© 2025 Emergency Assist. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        // ===== MENU TOGGLE FUNCTIONALITY =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const collapsibleSections = document.getElementById('collapsibleSections');
+            
+            if (!menuToggle || !collapsibleSections) {
+                console.log('Menu elements not found on this page');
+                return;
+            }
+            
+            const menuIcon = menuToggle.querySelector('i');
+            
+            // Ensure sections are hidden on page load
+            collapsibleSections.style.display = 'none';
+            
+            menuToggle.addEventListener('click', function(event) {
+                event.stopPropagation();
+                const isActive = collapsibleSections.classList.contains('active');
+                
+                if (isActive) {
+                    // Hide sections
+                    collapsibleSections.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                    
+                    setTimeout(() => {
+                        collapsibleSections.style.display = 'none';
+                    }, 300);
+                } else {
+                    // Show sections
+                    collapsibleSections.style.display = 'block';
+                    setTimeout(() => {
+                        collapsibleSections.classList.add('active');
+                        menuToggle.classList.add('active');
+                        menuIcon.classList.remove('fa-bars');
+                        menuIcon.classList.add('fa-times');
+                        refreshMap(); // Refresh map when menu is opened
+                    }, 10);
+                }
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!menuToggle.contains(event.target) && 
+                    !collapsibleSections.contains(event.target) &&
+                    collapsibleSections.classList.contains('active')) {
+                    
+                    collapsibleSections.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                    
+                    setTimeout(() => {
+                        collapsibleSections.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            // Initialize other functionalities
+            initializeMap();
+            initializeTimer();
+            initializeVisitorCounter();
+        });
+
+        // ===== MAP FUNCTIONALITY =====
+        let map;
+        let userLocation = null;
+        let userMarker = null;
+        let hospitalMarkers = [];
+        let mapInitialized = false;
+
+        function initializeMap() {
+            // Wait for DOM to be ready
+            if (document.getElementById('map')) {
+                console.log('Map element found, initializing...');
+                
+                // Initialize the map with minimal settings
+                map = L.map('map', {
+                    center: [20.5937, 78.9629],
+                    zoom: 5,
+                    zoomControl: false
+                });
+                
+                // Add OpenStreetMap tiles
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 18,
+                    minZoom: 3
+                }).addTo(map);
+                
+                // Add zoom control after a delay
+                setTimeout(() => {
+                    L.control.zoom({ position: 'topright' }).addTo(map);
+                }, 1000);
+                
+                mapInitialized = true;
+                console.log('Map initialized successfully');
+                
+                // Add event listeners for map buttons
+                const locateMeBtn = document.getElementById('locate-me');
+                const findHospitalsBtn = document.getElementById('find-hospitals');
+                
+                if (locateMeBtn) locateMeBtn.addEventListener('click', locateUser);
+                if (findHospitalsBtn) findHospitalsBtn.addEventListener('click', findHospitals);
+            } else {
+                console.log('Map element not found on this page');
+            }
+        }
+
+        function refreshMap() {
+            if (map && mapInitialized) {
+                setTimeout(() => {
+                    try {
+                        map.invalidateSize(true);
+                        console.log('Map refreshed after menu open');
+                    } catch (error) {
+                        console.error('Error refreshing map:', error);
+                    }
+                }, 300);
+            }
+        }
+
+        function locateUser() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        userLocation = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        
+                        // Update map view
+                        map.setView([userLocation.lat, userLocation.lng], 13);
+                        
+                        // Add or update user marker
+                        if (userMarker) {
+                            map.removeLayer(userMarker);
+                        }
+                        
+                        userMarker = L.marker([userLocation.lat, userLocation.lng])
+                            .addTo(map)
+                            .bindPopup('Your Location')
+                            .openPopup();
+                            
+                        document.getElementById('hospital-list').innerHTML = '<div class="loading">Location found! Click "Find Hospitals" to search</div>';
+                    },
+                    function(error) {
+                        alert('Unable to get your location. Please ensure location services are enabled.');
+                        console.error('Geolocation error:', error);
+                    }
+                );
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        }
+
+        function findHospitals() {
+            if (!userLocation) {
+                alert('Please click "Locate Me" first to find your location.');
+                return;
+            }
+            
+            document.getElementById('hospital-list').innerHTML = '<div class="loading">Searching for hospitals...</div>';
+            
+            // Clear existing hospital markers
+            hospitalMarkers.forEach(marker => map.removeLayer(marker));
+            hospitalMarkers = [];
+            
+            // Use Overpass API to find hospitals
+            const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node[amenity=hospital](around:5000,${userLocation.lat},${userLocation.lng});out;`;
+            
+            fetch(overpassUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const hospitals = data.elements;
+                    const hospitalList = document.getElementById('hospital-list');
+                    
+                    if (hospitals.length === 0) {
+                        hospitalList.innerHTML = '<div class="loading">No hospitals found nearby. Try expanding your search area.</div>';
+                        return;
+                    }
+                    
+                    // Sort hospitals by distance
+                    hospitals.sort((a, b) => {
+                        const distA = calculateDistance(userLocation.lat, userLocation.lng, a.lat, a.lon);
+                        const distB = calculateDistance(userLocation.lat, userLocation.lng, b.lat, b.lon);
+                        return distA - distB;
+                    });
+                    
+                    // Display hospitals in list
+                    let hospitalHTML = '';
+                    hospitals.slice(0, 10).forEach(hospital => {
+                        const distance = calculateDistance(userLocation.lat, userLocation.lng, hospital.lat, hospital.lon);
+                        
+                        hospitalHTML += `
+                            <div class="hospital-item" data-lat="${hospital.lat}" data-lng="${hospital.lon}">
+                                <div class="hospital-name">${hospital.tags.name || 'Unknown Hospital'}</div>
+                                <div class="hospital-address">${hospital.tags['addr:street'] || 'Address not available'}</div>
+                                <div class="hospital-distance">${distance.toFixed(1)} km away</div>
+                            </div>
+                        `;
+                        
+                        // Add marker for hospital
+                        const hospitalMarker = L.marker([hospital.lat, hospital.lon])
+                            .addTo(map)
+                            .bindPopup(`
+                                <strong>${hospital.tags.name || 'Unknown Hospital'}</strong><br>
+                                ${hospital.tags['addr:street'] || ''}<br>
+                                ${distance.toFixed(1)} km away
+                            `);
+                        
+                        hospitalMarkers.push(hospitalMarker);
+                    });
+                    
+                    hospitalList.innerHTML = hospitalHTML;
+                    
+                    // Add click event to hospital list items
+                    document.querySelectorAll('.hospital-item').forEach(item => {
+                        item.addEventListener('click', function() {
+                            const lat = parseFloat(this.getAttribute('data-lat'));
+                            const lng = parseFloat(this.getAttribute('data-lng'));
+                            map.setView([lat, lng], 15);
+                            
+                            // Highlight the clicked hospital
+                            hospitalMarkers.forEach(marker => {
+                                if (marker.getLatLng().lat === lat && marker.getLatLng().lng === lng) {
+                                    marker.openPopup();
+                                }
+                            });
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching hospitals:', error);
+                    document.getElementById('hospital-list').innerHTML = '<div class="loading">Error loading hospitals. Please try again.</div>';
+                });
+        }
+
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = 
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        // ===== TIMER FUNCTIONALITY =====
+        let timerInterval;
+        let timerRunning = false;
+        let seconds = 0, minutes = 0, hours = 0;
+
+        function initializeTimer() {
+            const startButton = document.getElementById('start-timer');
+            const pauseButton = document.getElementById('pause-timer');
+            const resetButton = document.getElementById('reset-timer');
+            
+            if (startButton && pauseButton && resetButton) {
+                startButton.addEventListener('click', startTimer);
+                pauseButton.addEventListener('click', pauseTimer);
+                resetButton.addEventListener('click', resetTimer);
+                updateTimerDisplay();
+            } else {
+                console.log('Timer elements not found on this page');
+            }
+        }
+
+        function updateTimerDisplay() {
+            const timerDisplay = document.getElementById('timer-display');
+            if (timerDisplay) {
+                const formattedHours = hours.toString().padStart(2, '0');
+                const formattedMinutes = minutes.toString().padStart(2, '0');
+                const formattedSeconds = seconds.toString().padStart(2, '0');
+                timerDisplay.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+            }
+        }
+
+        function startTimer() {
+            if (!timerRunning) {
+                timerRunning = true;
+                timerInterval = setInterval(() => {
+                    seconds++;
+                    if (seconds >= 60) {
+                        seconds = 0;
+                        minutes++;
+                        if (minutes >= 60) {
+                            minutes = 0;
+                            hours++;
+                        }
+                    }
+                    updateTimerDisplay();
+                }, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            if (timerRunning) {
+                clearInterval(timerInterval);
+                timerRunning = false;
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timerRunning = false;
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            updateTimerDisplay();
+        }
+
+        // ===== VISITOR COUNTER =====
+        function initializeVisitorCounter() {
+            const visitorCount = document.getElementById('visitor-count');
+            if (visitorCount) {
+                let count = localStorage.getItem('visitorCount') || 0;
+                count = parseInt(count) + 1;
+                localStorage.setItem('visitorCount', count);
+                visitorCount.textContent = count;
+            }
+        }
+
+        // ===== GOOGLE TRANSLATE =====
+        function googleTranslateElementInit() {
+            if (typeof google !== 'undefined' && google.translate) {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,hi,kn,te,ta,gu,mr',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+            }
+        }
+    </script>
+</body>
+</html>

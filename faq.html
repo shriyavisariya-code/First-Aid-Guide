@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Aid FAQ - Emergency Assist</title>
+    <script src="faq.js" defer></script>
+    <link rel="stylesheet" href="faq.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <div class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Collapsible Sections - Hidden by default -->
+    <div class="collapsible-sections" id="collapsibleSections">
+        <!-- Google Translate API -->
+        <div class="language-selector">
+            <label>Select Language:</label>
+            <div id="google_translate_element"></div>
+        </div>
+
+        <!-- Timer Section -->
+        <div class="timer-section">
+            <h2>First Aid Timer</h2>
+            <p>Use this timer for CPR compressions or other timed procedures</p>
+            <div class="timer-display" id="timer-display">00:00:00</div>
+            <div class="timer-controls">
+                <button id="start-timer">Start</button>
+                <button id="pause-timer">Pause</button>
+                <button id="reset-timer">Reset</button>
+            </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div class="map-section">
+            <h2>Find Nearby Hospitals</h2>
+            <div class="map-controls">
+                <button id="locate-me">Locate Me</button>
+                <button id="find-hospitals">Find Hospitals</button>
+            </div>
+            <div id="map"></div>
+            <div class="hospital-list" id="hospital-list">
+                <div class="loading">Click "Locate Me" to find hospitals near you</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main FAQ Content -->
+    <div class="faq-container">
+        <a href="webpro.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Main Page
+        </a>
+        
+        <div class="faq-header">
+            <h1>First Aid Frequently Asked Questions</h1>
+            <p>Find answers to common questions about first aid procedures and emergency care</p>
+        </div>
+        
+        <div class="faq-list">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is the first thing I should do in any emergency?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>The first step in any emergency is to ensure your own safety and the safety of the victim. Check the scene for any potential dangers before approaching. Then, check if the person is responsive and breathing normally. If they're unresponsive or not breathing normally, call emergency services immediately.</p>
+                    <p><strong>Remember:</strong> Your safety comes first! Never put yourself in danger while trying to help others.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I know if someone needs CPR?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>CPR is needed when a person is unresponsive and not breathing normally. Check for responsiveness by tapping their shoulder and shouting "Are you okay?" If they don't respond, check for breathing by looking for chest movement, listening for breath sounds, and feeling for air on your cheek for no more than 10 seconds.</p>
+                    <p><strong>Key signs:</strong> No response + No normal breathing = Start CPR immediately</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What's the correct ratio of compressions to breaths in CPR?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>For adult CPR, the recommended ratio is <strong>30 chest compressions to 2 rescue breaths</strong>. For children and infants, if you're trained and willing, use a 15:2 ratio. However, if you're untrained or uncomfortable with rescue breaths, hands-only CPR (continuous chest compressions) is still effective for adults.</p>
+                    <p><strong>Compression rate:</strong> 100-120 compressions per minute</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 4 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I treat a burn properly?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>For minor burns, cool the burn under cool (not cold) running water for 10-20 minutes. Do not use ice as it can damage the tissue. Cover the burn with a sterile non-stick dressing.</p>
+                    <p><strong>Do NOT:</strong> Apply creams, ointments, butter, or home remedies. Do not break blisters.</p>
+                    <p><strong>Seek medical help for:</strong> Large burns, deep burns, burns on face/hands/feet/genitals, or chemical/electrical burns.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 5 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What should I do if someone is choking?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>If the person can cough, speak, or breathe, encourage them to keep coughing. If they cannot breathe, speak, or cough, perform abdominal thrusts (Heimlich maneuver):</p>
+                    <ol>
+                        <li>Stand behind them and wrap your arms around their waist</li>
+                        <li>Make a fist with one hand and place it just above their navel</li>
+                        <li>Grasp your fist with your other hand</li>
+                        <li>Give quick upward thrusts until the object is dislodged</li>
+                    </ol>
+                    <p>For unconscious victims, start CPR immediately.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 6 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I control severe bleeding?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Follow these steps for severe bleeding:</p>
+                    <ol>
+                        <li>Apply direct pressure to the wound with a clean cloth or sterile dressing</li>
+                        <li>Elevate the injured area above heart level if possible</li>
+                        <li>If blood soaks through, do not remove the dressing - add more on top</li>
+                        <li>If bleeding doesn't stop, continue pressure and seek emergency help</li>
+                    </ol>
+                    <p><strong>Tourniquet use:</strong> Only as a last resort for life-threatening bleeding that cannot be controlled by direct pressure.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 7 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What are the signs of a heart attack?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Common signs include:</p>
+                    <ul>
+                        <li>Chest pain or discomfort (pressure, squeezing, fullness)</li>
+                        <li>Pain in arms, back, neck, jaw, or stomach</li>
+                        <li>Shortness of breath</li>
+                        <li>Cold sweat</li>
+                        <li>Nausea or lightheadedness</li>
+                    </ul>
+                    <p><strong>Note for women:</strong> Symptoms can be different - may include unusual fatigue, indigestion, or anxiety.</p>
+                    <p>If you suspect a heart attack, call emergency services immediately.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 8 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I recognize a stroke?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Remember the acronym <strong>FAST</strong>:</p>
+                    <ul>
+                        <li><strong>F</strong>ace - Ask the person to smile. Does one side droop?</li>
+                        <li><strong>A</strong>rms - Ask them to raise both arms. Does one drift downward?</li>
+                        <li><strong>S</strong>peech - Ask them to repeat a simple phrase. Is speech slurred or strange?</li>
+                        <li><strong>T</strong>ime - If you observe any of these signs, call emergency services immediately!</li>
+                    </ul>
+                    <p>Other symptoms: Sudden numbness, confusion, trouble seeing, walking, or severe headache.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 9 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What should I include in a basic first aid kit?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>A comprehensive first aid kit should include:</p>
+                    <ul>
+                        <li>Adhesive bandages in various sizes</li>
+                        <li>Sterile gauze pads and roller gauze</li>
+                        <li>Adhesive tape and scissors</li>
+                        <li>Antiseptic wipes and antibiotic ointment</li>
+                        <li>Disposable gloves and breathing barrier for CPR</li>
+                        <li>Instant cold packs and thermometer</li>
+                        <li>Pain relievers (aspirin, ibuprofen)</li>
+                        <li>Emergency phone numbers and first aid manual</li>
+                    </ul>
+                    <p>Customize your kit based on your family's specific needs and activities.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 10 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How often should I renew my first aid training?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>It's recommended to renew your first aid and CPR certification <strong>every 2-3 years</strong>. However, if you use these skills regularly (healthcare professionals, first responders), you may need more frequent refreshers.</p>
+                    <p><strong>Even with current certification:</strong> It's a good idea to review the basics periodically as guidelines can change. Practice skills regularly to maintain proficiency.</p>
+                    <p>Many organizations offer free or low-cost refresher courses throughout the year.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 11 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What should I do for a nosebleed?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>For a nosebleed, follow these steps:</p>
+                    <ol>
+                        <li>Sit upright and lean forward slightly</li>
+                        <li>Pinch the soft part of the nose for 10-15 minutes</li>
+                        <li>Breathe through your mouth</li>
+                        <li>Apply a cold compress to the bridge of the nose</li>
+                        <li>Avoid blowing your nose for several hours after bleeding stops</li>
+                    </ol>
+                    <p><strong>Seek medical attention if:</strong> Bleeding lasts more than 20 minutes, is caused by an injury, or occurs frequently.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 12 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I treat heat stroke?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Heat stroke is a medical emergency. Signs include high body temperature, confusion, loss of consciousness, and hot, dry skin.</p>
+                    <p><strong>Immediate actions:</strong></p>
+                    <ol>
+                        <li>Call emergency services immediately</li>
+                        <li>Move the person to a cool place</li>
+                        <li>Remove excess clothing</li>
+                        <li>Cool with water, wet cloths, or ice packs on neck, armpits, and groin</li>
+                        <li>Do not give fluids if the person is unconscious</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Visitor Counter -->
+    <div id="visitor-counter">
+        <span id="visitor-count">0</span> visitors
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p><a href="tel:+919999999999">📞 +91 99999 99999</a></p>
+            </div>
+            <div class="footer-faq">
+                <h3>FAQ</h3>
+                <div class="faq-links">
+                    <a href="faq.html" class="faq-link">First Aid Questions</a>
+                    <a href="faq.html" class="faq-link">Emergency Procedures</a>
+                    <a href="faq.html" class="faq-link">CPR Guidelines</a>
+                    <a href="faq.html" class="faq-link">Treatment Methods</a>
+                </div>
+            </div>
+            <div class="footer-socials">
+                <h3>Follow</h3>
+                <div class="social-icons">
+                    <a href="https://instagram.com/your_profile" target="_blank" aria-label="Instagram" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/your_profile" target="_blank" aria-label="LinkedIn" class="social-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-bottom">© 2025 Emergency Assist. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
