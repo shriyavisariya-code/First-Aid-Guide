@@ -37,13 +37,14 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
+    padding: 0;
 }
 
 /* Menu Toggle */
 .menu-toggle {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
     background: var(--gradient-primary);
     color: white;
     width: 50px;
@@ -68,8 +69,8 @@ body {
 .collapsible-sections {
     position: fixed;
     top: 0;
-    right: -400px;
-    width: 380px;
+    right: -100%;
+    width: 100%;
     height: 100vh;
     background: linear-gradient(180deg, var(--surface) 0%, #f8fafc 100%);
     box-shadow: var(--shadow-lg);
@@ -106,7 +107,7 @@ body {
 /* Timer Section */
 .timer-section {
     background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
-    padding: 25px;
+    padding: 20px;
     border-radius: 16px;
     margin-bottom: 20px;
     box-shadow: var(--shadow);
@@ -140,35 +141,38 @@ body {
 }
 
 .timer-display {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bold;
     text-align: center;
     background: var(--gradient-warning);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 20px 0;
+    margin: 15px 0;
     font-family: 'Courier New', monospace;
     background-color: var(--background);
-    padding: 20px;
+    padding: 15px;
     border-radius: 12px;
     border: 3px dashed var(--warning);
 }
 
 .timer-controls {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .timer-controls button {
-    padding: 12px 24px;
+    padding: 12px 20px;
     border: none;
     border-radius: 10px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: var(--shadow);
-    font-size: 1rem;
+    font-size: 0.9rem;
+    flex: 1;
+    min-width: 80px;
 }
 
 #start-timer {
@@ -194,7 +198,7 @@ body {
 /* Map Section */
 .map-section {
     background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
-    padding: 25px;
+    padding: 20px;
     border-radius: 16px;
     margin-bottom: 20px;
     box-shadow: var(--shadow);
@@ -228,12 +232,13 @@ body {
 
 .map-controls {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
 .map-controls button {
-    padding: 12px 20px;
+    padding: 12px 16px;
     background: var(--gradient-primary);
     color: white;
     border: none;
@@ -243,6 +248,8 @@ body {
     transition: all 0.3s ease;
     flex: 1;
     box-shadow: var(--shadow);
+    font-size: 0.9rem;
+    min-width: 120px;
 }
 
 .map-controls button:hover {
@@ -278,7 +285,7 @@ body {
 .header-container {
     background: var(--gradient-primary);
     color: white;
-    padding: 50px 20px;
+    padding: 40px 20px;
     text-align: center;
     margin-bottom: 30px;
     position: relative;
@@ -297,28 +304,30 @@ body {
 }
 
 .header-logo {
-    height: 90px;
-    margin-bottom: 20px;
+    height: 70px;
+    margin-bottom: 15px;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
     position: relative;
     z-index: 1;
 }
 
 #header-main {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 10px;
     position: relative;
     z-index: 1;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    line-height: 1.2;
 }
 
 #sub-header {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     opacity: 0.95;
     position: relative;
     z-index: 1;
     font-weight: 500;
+    line-height: 1.4;
 }
 
 /* Emergency Call Button */
@@ -327,14 +336,14 @@ body {
     width: 90%;
     max-width: 400px;
     margin: 0 auto;
-    padding: 18px 30px;
+    padding: 16px 25px;
     background: var(--gradient-emergency);
     color: white;
     text-decoration: none;
     text-align: center;
     border-radius: 15px;
     font-weight: 800;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     box-shadow: var(--shadow-lg);
     transition: all 0.3s ease;
     position: relative;
@@ -345,7 +354,7 @@ body {
 #call-emergency::before {
     content: '🚑';
     margin-right: 10px;
-    font-size: 1.4em;
+    font-size: 1.3em;
 }
 
 #call-emergency:hover {
@@ -364,12 +373,13 @@ body {
 #emergencies-heading {
     text-align: center;
     color: var(--text-primary);
-    margin: 30px 0;
-    font-size: 2rem;
+    margin: 25px 0;
+    font-size: 1.8rem;
     background: linear-gradient(135deg, var(--primary) 0%, var(--info) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
+    padding: 0 15px;
 }
 
 /* Search Bar */
@@ -378,10 +388,10 @@ body {
     max-width: 500px;
     margin: 0 auto;
     display: block;
-    padding: 18px 25px;
+    padding: 16px 20px;
     border: 3px solid var(--primary-light);
     border-radius: 15px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     transition: all 0.3s ease;
     box-shadow: var(--shadow);
@@ -402,18 +412,18 @@ body {
 .emergency-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 0 20px;
+    gap: 15px;
+    padding: 0 15px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .emergency-list button {
-    padding: 25px 20px;
+    padding: 20px 15px;
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     border: 3px solid var(--emergency-btn);
     border-radius: 15px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.4s ease;
@@ -451,15 +461,16 @@ body {
 #disclaimer-text {
     text-align: center;
     color: var(--text-secondary);
-    padding: 0 20px;
+    padding: 0 15px;
     max-width: 800px;
-    margin: 30px auto;
-    font-size: 1rem;
+    margin: 25px auto;
+    font-size: 0.9rem;
     background: linear-gradient(135deg, #fef3c7 0%, #fef7cd 100%);
-    padding: 20px;
+    padding: 15px;
     border-radius: 12px;
     border-left: 4px solid var(--warning);
     box-shadow: var(--shadow);
+    line-height: 1.5;
 }
 
 #disclaimer-text strong {
@@ -469,12 +480,12 @@ body {
 /* Visitor Counter */
 #visitor-counter {
     text-align: center;
-    padding: 20px;
+    padding: 15px;
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    margin: 30px auto;
+    margin: 25px auto;
     border-radius: 15px;
     box-shadow: var(--shadow-lg);
-    max-width: 220px;
+    max-width: 200px;
     border: 2px solid var(--primary-light);
     position: relative;
 }
@@ -482,24 +493,24 @@ body {
 #visitor-counter::before {
     content: '👥';
     position: absolute;
-    top: -15px;
+    top: -12px;
     left: 50%;
     transform: translateX(-50%);
     background: var(--primary);
     color: white;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 
 #visitor-count {
     font-weight: 800;
     color: var(--primary);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -509,8 +520,8 @@ body {
 .footer {
     background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
     color: white;
-    padding: 50px 20px 20px;
-    margin-top: 50px;
+    padding: 40px 20px 20px;
+    margin-top: 40px;
     position: relative;
 }
 
@@ -527,15 +538,15 @@ body {
 .footer-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .footer h3 {
     color: var(--primary-light);
-    margin-bottom: 20px;
-    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
     font-weight: 700;
 }
 
@@ -543,7 +554,7 @@ body {
     color: white;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .footer-contact a:hover {
@@ -555,105 +566,256 @@ body {
 .legal-links {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .faq-link {
     color: var(--text-light);
     text-decoration: none;
     transition: all 0.3s ease;
-    padding: 5px 0;
+    padding: 4px 0;
+    font-size: 0.9rem;
 }
 
 .faq-link:hover {
     color: white;
     transform: translateX(8px);
     background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent);
-    padding-left: 10px;
+    padding-left: 8px;
 }
 
 .social-icons {
     display: flex;
-    gap: 20px;
+    gap: 15px;
+    justify-content: center;
 }
 
 .social-icon {
     color: white;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     transition: all 0.3s ease;
     background: rgba(255, 255, 255, 0.1);
-    padding: 12px;
-    border-radius: 12px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .social-icon:hover {
     color: var(--primary-light);
-    transform: translateY(-5px) scale(1.1);
+    transform: translateY(-3px) scale(1.1);
     background: rgba(255, 255, 255, 0.2);
 }
 
 .footer-bottom {
     text-align: center;
-    margin-top: 40px;
-    padding-top: 25px;
+    margin-top: 30px;
+    padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--text-light);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
-/* Responsive Design */
+/* Enhanced Responsive Design */
+@media (max-width: 1200px) {
+    .emergency-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 12px;
+    }
+}
+
 @media (max-width: 768px) {
-    .collapsible-sections {
-        width: 100%;
-        right: -100%;
+    body {
+        padding: 0;
     }
-    
+
     .header-container {
-        padding: 40px 15px;
+        padding: 30px 15px;
+        margin-bottom: 20px;
     }
-    
+
     #header-main {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
     }
-    
+
+    #sub-header {
+        font-size: 1rem;
+    }
+
+    .header-logo {
+        height: 60px;
+    }
+
+    #emergencies-heading {
+        font-size: 1.5rem;
+        margin: 20px 0;
+    }
+
     .emergency-list {
         grid-template-columns: 1fr;
-        padding: 0 15px;
+        gap: 10px;
+        padding: 0 10px;
     }
-    
+
+    .emergency-list button {
+        padding: 18px 12px;
+        font-size: 0.95rem;
+    }
+
+    #search-bar {
+        width: 95%;
+        padding: 14px 18px;
+        font-size: 0.95rem;
+    }
+
+    #call-emergency {
+        width: 95%;
+        padding: 14px 20px;
+        font-size: 1.1rem;
+    }
+
     .footer-container {
         grid-template-columns: 1fr;
+        gap: 25px;
         text-align: center;
     }
-    
-    .social-icons {
-        justify-content: center;
+
+    .footer {
+        padding: 30px 15px 15px;
+        margin-top: 30px;
+    }
+
+    .menu-toggle {
+        top: 10px;
+        right: 10px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .collapsible-sections {
+        padding: 70px 15px 15px;
+    }
+
+    .timer-section,
+    .map-section {
+        padding: 15px;
+    }
+
+    .timer-display {
+        font-size: 1.8rem;
+        padding: 12px;
+    }
+
+    .timer-controls button {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+
+    .map-controls button {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+    }
+
+    #map {
+        height: 180px;
     }
 }
 
 @media (max-width: 480px) {
-    .menu-toggle {
-        top: 15px;
-        right: 15px;
-        width: 45px;
-        height: 45px;
+    .header-container {
+        padding: 25px 10px;
     }
-    
-    .header-logo {
-        height: 70px;
-    }
-    
+
     #header-main {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
-    
-    .timer-display {
-        font-size: 2rem;
+
+    #sub-header {
+        font-size: 0.9rem;
     }
-    
+
+    .header-logo {
+        height: 50px;
+    }
+
+    #emergencies-heading {
+        font-size: 1.3rem;
+    }
+
+    .emergency-list {
+        padding: 0 8px;
+    }
+
     .emergency-list button {
-        padding: 20px 15px;
+        padding: 16px 10px;
+        font-size: 0.9rem;
+    }
+
+    #search-bar {
+        width: 98%;
+        padding: 12px 16px;
+    }
+
+    #call-emergency {
+        width: 98%;
+        padding: 12px 18px;
         font-size: 1rem;
+    }
+
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+        top: 8px;
+        right: 8px;
+    }
+
+    .timer-display {
+        font-size: 1.6rem;
+    }
+
+    .timer-controls,
+    .map-controls {
+        flex-direction: column;
+    }
+
+    .timer-controls button,
+    .map-controls button {
+        width: 100%;
+    }
+
+    #visitor-counter {
+        max-width: 180px;
+        padding: 12px;
+    }
+
+    #visitor-count {
+        font-size: 1.1rem;
+    }
+
+    .footer {
+        padding: 25px 10px 10px;
+    }
+
+    .social-icons {
+        gap: 12px;
+    }
+
+    .social-icon {
+        font-size: 1.3rem;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 360px) {
+    #header-main {
+        font-size: 1.4rem;
+    }
+
+    .emergency-list button {
+        padding: 14px 8px;
+        font-size: 0.85rem;
+    }
+
+    .timer-display {
+        font-size: 1.4rem;
     }
 }
 
@@ -685,20 +847,53 @@ body {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
     background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%);
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
     background: var(--gradient-primary);
-    border-radius: 5px;
+    border-radius: 4px;
     border: 2px solid #e2e8f0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-dark);
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .menu-toggle:hover {
+        transform: none;
+    }
+    
+    .emergency-list button:hover {
+        transform: none;
+    }
+    
+    .back-button:hover {
+        transform: none;
+    }
+    
+    .timer-controls button:hover,
+    .map-controls button:hover {
+        transform: none;
+    }
+    
+    .social-icon:hover {
+        transform: none;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
