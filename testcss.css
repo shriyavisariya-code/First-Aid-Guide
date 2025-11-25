@@ -1,23 +1,30 @@
-/* testcss.css */
-/* Bright Color Palette with Blue Focus */
+/* Enhanced Modern Color Palette */
 :root {
-    --bright-blue: #007bff;
-    --bright-green: #28a745;
-    --bright-red: #dc3545;
-    --bright-orange: #fd7e14;
-    --bright-yellow: #ffc107;
-    --bright-indigo: #6610f2;
-    --bright-pink: #e83e8c;
-    --bright-teal: #20c997;
-    --bright-cyan: #17a2b8;
-    --white: #ffffff;
-    --light-gray: #f8f9fa;
-    --text-dark: #212529;
-    --text-light: #6c757d;
-    --shadow: rgba(0, 0, 0, 0.15);
-    --dark-shadow: rgba(0, 0, 0, 0.3);
+    --primary: #2563eb;      /* Modern blue */
+    --primary-dark: #1d4ed8;
+    --primary-light: #3b82f6;
+    --secondary: #dc2626;    /* Emergency red */
+    --accent: #10b981;       /* Success green */
+    --warning: #f59e0b;      /* Warning amber */
+    --info: #8b5cf6;         /* Purple for additional accent */
+    --teal: #14b8a6;         /* Teal for variety */
+    --emergency-btn: #dc2626; /* Consistent emergency button color */
+    --emergency-btn-hover: #b91c1c;
+    --background: #f8fafc;   /* Light background */
+    --surface: #ffffff;      /* Card background */
+    --text-primary: #1e293b; /* Dark text */
+    --text-secondary: #64748b;
+    --text-light: #94a3b8;
+    --border: #e2e8f0;
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-emergency: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    --gradient-success: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+    --gradient-warning: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
+/* Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -25,60 +32,636 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--light-gray);
-    color: var(--text-dark);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: var(--text-primary);
     line-height: 1.6;
-    padding: 20px;
     min-height: 100vh;
-    position: relative;
 }
 
-/* Menu Toggle Button */
+/* Menu Toggle */
 .menu-toggle {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
+    background: var(--gradient-primary);
     color: white;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5em;
     cursor: pointer;
-    box-shadow: 0 4px 15px var(--dark-shadow);
-    border: 3px solid white;
-    z-index: 1001;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
     transition: all 0.3s ease;
+    border: 2px solid white;
 }
 
 .menu-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px var(--dark-shadow);
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
 }
 
-.menu-toggle.active {
-    background: linear-gradient(135deg, var(--bright-red) 0%, #c82333 100%);
-    transform: rotate(90deg);
-}
-
-/* Collapsible Sections - HIDDEN BY DEFAULT */
+/* Collapsible Sections */
 .collapsible-sections {
-    display: none;
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 380px;
+    height: 100vh;
+    background: linear-gradient(180deg, var(--surface) 0%, #f8fafc 100%);
+    box-shadow: var(--shadow-lg);
+    padding: 80px 20px 20px;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+    z-index: 999;
+    border-left: 4px solid var(--primary);
 }
 
 .collapsible-sections.active {
-    display: block;
-    animation: slideDown 0.3s ease-out;
+    right: 0;
 }
 
-@keyframes slideDown {
+/* Language Selector */
+.language-selector {
+    background: var(--surface);
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--primary-light);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.language-selector label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+/* Timer Section */
+.timer-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--accent);
+    position: relative;
+    overflow: hidden;
+}
+
+.timer-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-success);
+}
+
+.timer-section h2 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.timer-section h2::before {
+    content: '⏱️';
+    font-size: 1.2em;
+}
+
+.timer-display {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    background: var(--gradient-warning);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 20px 0;
+    font-family: 'Courier New', monospace;
+    background-color: var(--background);
+    padding: 20px;
+    border-radius: 12px;
+    border: 3px dashed var(--warning);
+}
+
+.timer-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.timer-controls button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    font-size: 1rem;
+}
+
+#start-timer {
+    background: var(--gradient-success);
+    color: white;
+}
+
+#pause-timer {
+    background: var(--gradient-warning);
+    color: white;
+}
+
+#reset-timer {
+    background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+    color: white;
+}
+
+.timer-controls button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Map Section */
+.map-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--info);
+    position: relative;
+}
+
+.map-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--info);
+}
+
+.map-section h2 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.map-section h2::before {
+    content: '📍';
+    font-size: 1.2em;
+}
+
+.map-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.map-controls button {
+    padding: 12px 20px;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    box-shadow: var(--shadow);
+}
+
+.map-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+#map {
+    height: 200px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border: 2px solid var(--primary-light);
+    box-shadow: var(--shadow);
+}
+
+.hospital-list {
+    max-height: 200px;
+    overflow-y: auto;
+    background: var(--background);
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid var(--border);
+}
+
+.loading {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 20px;
+    font-style: italic;
+}
+
+/* Header */
+.header-container {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+    background-size: cover;
+}
+
+.header-logo {
+    height: 90px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    position: relative;
+    z-index: 1;
+}
+
+#header-main {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+#sub-header {
+    font-size: 1.2rem;
+    opacity: 0.95;
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+}
+
+/* Emergency Call Button */
+#call-emergency {
+    display: block;
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 18px 30px;
+    background: var(--gradient-emergency);
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 15px;
+    font-weight: 800;
+    font-size: 1.3rem;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid white;
+}
+
+#call-emergency::before {
+    content: '🚑';
+    margin-right: 10px;
+    font-size: 1.4em;
+}
+
+#call-emergency:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(220, 38, 38, 0.4);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 15px 30px rgba(220, 38, 38, 0.4); }
+    50% { box-shadow: 0 15px 40px rgba(220, 38, 38, 0.6); }
+    100% { box-shadow: 0 15px 30px rgba(220, 38, 38, 0.4); }
+}
+
+/* Headings */
+#emergencies-heading {
+    text-align: center;
+    color: var(--text-primary);
+    margin: 30px 0;
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--info) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+/* Search Bar */
+#search-bar {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: block;
+    padding: 18px 25px;
+    border: 3px solid var(--primary-light);
+    border-radius: 15px;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+#search-bar:focus {
+    outline: none;
+    border-color: var(--info);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+    transform: translateY(-2px);
+}
+
+#search-bar::placeholder {
+    color: var(--text-light);
+}
+
+/* Emergency List - All buttons same color */
+.emergency-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.emergency-list button {
+    padding: 25px 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 3px solid var(--emergency-btn);
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    color: var(--emergency-btn);
+}
+
+.emergency-list button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.emergency-list button:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: var(--shadow-lg);
+    color: white;
+    background: var(--gradient-emergency);
+    border-color: var(--emergency-btn-hover);
+}
+
+.emergency-list button:hover::before {
+    left: 100%;
+}
+
+/* Disclaimer */
+#disclaimer-text {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 0 20px;
+    max-width: 800px;
+    margin: 30px auto;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #fef3c7 0%, #fef7cd 100%);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid var(--warning);
+    box-shadow: var(--shadow);
+}
+
+#disclaimer-text strong {
+    color: var(--warning);
+}
+
+/* Visitor Counter */
+#visitor-counter {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    margin: 30px auto;
+    border-radius: 15px;
+    box-shadow: var(--shadow-lg);
+    max-width: 220px;
+    border: 2px solid var(--primary-light);
+    position: relative;
+}
+
+#visitor-counter::before {
+    content: '👥';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+#visitor-count {
+    font-weight: 800;
+    color: var(--primary);
+    font-size: 1.4rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: white;
+    padding: 50px 20px 20px;
+    margin-top: 50px;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer h3 {
+    color: var(--primary-light);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.footer-contact a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.footer-contact a:hover {
+    color: var(--accent);
+    transform: translateX(5px);
+}
+
+.faq-links,
+.legal-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-link {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+}
+
+.faq-link:hover {
+    color: white;
+    transform: translateX(8px);
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent);
+    padding-left: 10px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
+    color: white;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.social-icon:hover {
+    color: var(--primary-light);
+    transform: translateY(-5px) scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .collapsible-sections {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .header-container {
+        padding: 40px 15px;
+    }
+    
+    #header-main {
+        font-size: 2.2rem;
+    }
+    
+    .emergency-list {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+    
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-toggle {
+        top: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .header-logo {
+        height: 70px;
+    }
+    
+    #header-main {
+        font-size: 1.8rem;
+    }
+    
+    .timer-display {
+        font-size: 2rem;
+    }
+    
+    .emergency-list button {
+        padding: 20px 15px;
+        font-size: 1rem;
+    }
+}
+
+/* Enhanced Animations */
+@keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -86,692 +669,36 @@ body {
     }
 }
 
-/* Header Styles */
-h1#header-main {
-    color: white;
-    text-align: center;
-    font-size: 2.8em;
-    margin-bottom: 15px;
-    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px var(--shadow);
-    border: 4px solid var(--bright-blue);
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-p#sub-header {
-    text-align: center;
-    font-size: 1.3em;
-    margin-bottom: 25px;
-    background: linear-gradient(135deg, var(--bright-teal) 0%, #199d7a 100%);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px var(--shadow);
-    font-weight: 600;
-    border: 3px solid var(--bright-teal);
-    color: white;
-}
-
-/* Emergency Call Button */
-a#call-emergency {
-    display: block;
-    background: linear-gradient(135deg, var(--bright-red) 0%, #c82333 100%);
-    color: white;
-    text-decoration: none;
-    padding: 20px 40px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 1.4em;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
-    transition: all 0.3s ease;
-    border: 4px solid white;
-    margin: 0 auto;
-    width: fit-content;
-    max-width: 400px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-a#call-emergency:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 12px 35px rgba(220, 53, 69, 0.6);
-    background: linear-gradient(135deg, #c82333 0%, var(--bright-red) 100%);
-}
-
-/* Headings */
-h2 {
-    color: white;
-    margin: 25px 0;
-    font-size: 2em;
-    text-align: center;
-    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px var(--shadow);
-    border: 3px solid var(--bright-blue);
-    font-weight: 700;
-}
-
-/* Search Bar */
-#search-bar {
-    width: 100%;
-    max-width: 600px;
-    padding: 16px 25px;
-    border: 3px solid var(--bright-blue);
-    border-radius: 30px;
-    font-size: 1.1em;
-    background: var(--white);
-    box-shadow: 0 5px 20px var(--shadow);
-    transition: all 0.3s ease;
-    display: block;
-    margin: 0 auto;
-}
-
-#search-bar:focus {
-    outline: none;
-    border-color: var(--bright-teal);
-    box-shadow: 0 8px 30px var(--shadow);
-    transform: translateY(-2px);
-    background: var(--light-gray);
-}
-
-/* Emergency List Buttons */
-.emergency-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin: 30px 0;
-    max-width: 1300px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .emergency-list button {
-    padding: 20px 25px;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.2em;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 20px var(--shadow);
-    color: white;
-    text-align: center;
-    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
-    border: 3px solid #004085;
-    min-height: 85px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.6s ease forwards;
 }
 
-.emergency-list button:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 10px 30px var(--dark-shadow);
-    background: linear-gradient(135deg, #0056b3 0%, var(--bright-blue) 100%);
-}
-
-/* Remove the <br><br> between buttons */
-.emergency-list br {
-    display: none;
-}
-
-/* Timer Section */
-.timer-section {
-    background: linear-gradient(135deg, var(--white) 0%, #e9ecef 100%);
-    padding: 35px;
-    border-radius: 15px;
-    box-shadow: 0 8px 30px var(--shadow);
-    margin: 40px 0;
-    text-align: center;
-    border: 4px solid var(--bright-green);
-}
-
-.timer-section h2 {
-    background: linear-gradient(135deg, var(--bright-green) 0%, #1e7e34 100%);
-    border: 3px solid var(--bright-green);
-}
-
-.timer-section p {
-    font-size: 1.2em;
-    color: var(--text-dark);
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-
-.timer-display {
-    font-size: 3.5em;
-    font-weight: bold;
-    color: var(--bright-red);
-    margin: 25px 0;
-    font-family: 'Courier New', monospace;
-    background: var(--white);
-    padding: 20px;
-    border-radius: 12px;
-    border: 3px solid var(--bright-red);
-    box-shadow: 0 4px 15px var(--shadow);
-}
-
-.timer-controls {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 25px;
-}
-
-.timer-controls button {
-    padding: 16px 35px;
-    border: none;
-    border-radius: 30px;
-    font-size: 1.2em;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 20px var(--shadow);
-    border: 3px solid white;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-#start-timer {
-    background: linear-gradient(135deg, var(--bright-green) 0%, #1e7e34 100%);
-}
-
-#pause-timer {
-    background: linear-gradient(135deg, var(--bright-yellow) 0%, #e0a800 100%);
-}
-
-#reset-timer {
-    background: linear-gradient(135deg, var(--bright-orange) 0%, #e55a00 100%);
-}
-
-.timer-controls button:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 25px var(--dark-shadow);
-}
-
-/* Map Section */
-.map-section {
-    background: linear-gradient(135deg, var(--white) 0%, #e9ecef 100%);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 30px var(--shadow);
-    margin: 40px 0;
-    border: 4px solid var(--bright-teal);
-    position: relative; /* Added for better stacking */
-}
-
-.map-section h2 {
-    background: linear-gradient(135deg, var(--bright-teal) 0%, #199d7a 100%);
-    border: 3px solid var(--bright-teal);
-    color: white; /* Added for contrast */
-    padding: 15px 25px; /* Added padding */
-    border-radius: 10px; /* Added border radius */
-    text-align: center; /* Center the text */
-    margin-bottom: 25px; /* Space below heading */
-}
-
-.map-controls {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-    justify-content: center;
-    flex-wrap: wrap; /* Added for mobile responsiveness */
-}
-
-.map-controls button {
-    padding: 16px 35px;
-    border: none;
-    border-radius: 30px;
-    font-size: 1.2em;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 20px var(--shadow);
-    border: 3px solid white;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    min-width: 200px; /* Added minimum width for consistency */
-}
-
-#locate-me {
-    background: linear-gradient(135deg, var(--bright-teal) 0%, #199d7a 100%);
-}
-
-#find-hospitals {
-    background: linear-gradient(135deg, var(--bright-cyan) 0%, #138496 100%);
-}
-
-.map-controls button:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 25px var(--dark-shadow);
-}
-
-.map-controls button:active {
-    transform: translateY(-1px) scale(1.02); /* Added active state */
-}
-
-.map-controls button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none !important; /* Disable hover effects when disabled */
-}
-
-#map {
-    height: 500px; /* Increased height for better visibility */
-    width: 100%; /* Ensure full width */
-    border-radius: 12px;
-    margin: 20px 0;
-    box-shadow: 0 5px 20px var(--shadow);
-    border: 3px solid var(--bright-teal);
-    background: #f8f9fa; /* Fallback background while loading */
-    position: relative; /* Ensure proper stacking */
-    z-index: 1; /* Ensure map appears above other elements */
-}
-
-/* Ensure Leaflet tiles load properly */
-.leaflet-container {
-    background: transparent !important;
-    font-family: inherit !important;
-}
-
-.leaflet-control-zoom a {
-    background-color: white !important;
-    color: #333 !important;
-    border: 2px solid var(--bright-teal) !important;
-}
-
-.leaflet-popup-content-wrapper {
-    border-radius: 10px !important;
-    box-shadow: 0 5px 20px var(--shadow) !important;
-}
-
-.hospital-list {
-    margin-top: 20px;
-    max-height: 400px; /* Added max height with scroll */
-    overflow-y: auto; /* Enable scrolling if many hospitals */
-    padding: 10px;
-}
-
-.loading {
-    text-align: center;
-    color: var(--text-light);
-    font-style: italic;
-    padding: 20px;
-    background: var(--light-gray);
-    border-radius: 12px;
-    font-size: 1.1em;
-    box-shadow: 0 4px 15px var(--shadow);
-    border: 2px solid var(--bright-blue);
-    margin: 10px 0;
-}
-
-.hospital-item {
-    background: var(--white);
-    padding: 20px; /* Increased padding */
-    margin: 10px 0;
-    border-radius: 12px; /* Increased border radius */
-    box-shadow: 0 2px 10px var(--shadow);
-    border-left: 6px solid var(--bright-blue); /* Thicker border */
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.hospital-item:hover {
-    transform: translateX(5px);
-    box-shadow: 0 8px 25px var(--shadow);
-    border-left-color: var(--bright-teal); /* Change color on hover */
-}
-
-.hospital-item:active {
-    transform: translateX(3px) scale(0.98); /* Added click feedback */
-}
-
-.hospital-name {
-    font-weight: bold;
-    color: var(--bright-blue);
-    margin-bottom: 8px;
-    font-size: 1.1em;
-}
-
-.hospital-address {
-    color: var(--text-light);
-    margin-bottom: 8px;
-    line-height: 1.4;
-}
-
-.hospital-distance {
-    color: var(--bright-green);
-    font-weight: 600;
-    font-size: 1em;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .map-section {
-        padding: 20px;
-        margin: 20px 0;
-    }
-    
-    .map-controls {
-        gap: 15px;
-        flex-direction: column; /* Stack buttons on mobile */
-        align-items: center;
-    }
-    
-    .map-controls button {
-        min-width: 250px; /* Full width buttons on mobile */
-        width: 100%;
-        max-width: 300px;
-        padding: 14px 25px;
-        font-size: 1.1em;
-    }
-    
-    #map {
-        height: 400px; /* Slightly smaller on mobile */
-    }
-    
-    .map-section h2 {
-        padding: 12px 20px;
-        font-size: 1.3em;
-    }
-}
-
-@media (max-width: 480px) {
-    .map-section {
-        padding: 15px;
-    }
-    
-    #map {
-        height: 350px;
-    }
-    
-    .hospital-item {
-        padding: 15px;
-    }
-    
-    .map-controls button {
-        min-width: 100%; /* Full width on very small screens */
-        font-size: 1em;
-    }
-}
-
-/* Language Selector */
-.language-selector {
-    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    box-shadow: 0 6px 20px var(--shadow);
-    text-align: center;
-    border: 3px solid var(--bright-blue);
-}
-
-.language-selector label {
-    font-weight: 700;
-    color: white;
-    margin-right: 15px;
-    font-size: 1.1em;
-}
-
-#google_translate_element {
-    display: inline-block;
-}
-
-/* Visitor Counter */
-#visitor-counter {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: linear-gradient(135deg, var(--bright-blue) 0%, #0056b3 100%);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 25px;
-    box-shadow: 0 6px 25px var(--dark-shadow);
-    font-weight: bold;
-    font-size: 0.9em;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    border: 3px solid white;
-}
-
-#visitor-counter:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 30px var(--dark-shadow);
-}
-
-#visitor-count {
-    font-weight: 800;
-    font-size: 1.1em;
-}
-
-/* Footer */
-.footer {
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    color: white;
-    padding: 40px 20px 20px;
-    margin-top: 50px;
-    box-shadow: 0 8px 30px var(--dark-shadow);
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer-contact h3, .footer-socials h3 {
-    margin-bottom: 15px;
-    font-size: 1.3em;
-    color: var(--bright-yellow);
-}
-
-.footer-contact a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1em;
-    font-weight: 600;
-}
-
-.footer-contact a:hover {
-    color: var(--bright-yellow);
-    text-decoration: underline;
-}
-
-.social-icons {
-    display: flex;
-    gap: 15px;
-}
-
-.social-icon {
-    color: white;
-    font-size: 1.8em;
-    transition: all 0.3s ease;
-}
-
-.social-icon:hover {
-    transform: scale(1.3);
-    color: var(--bright-yellow);
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 3px solid rgba(255,255,255,0.3);
-    font-weight: 700;
-    color: var(--bright-yellow);
-}
-
-/* Disclaimer */
-#disclaimer-text {
-    background: linear-gradient(135deg, var(--bright-yellow) 0%, #e0a800 100%);
-    padding: 25px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 1.1em;
-    box-shadow: 0 6px 20px var(--shadow);
-    margin: 30px 0;
-    font-weight: 700;
-    border: 3px solid #d39e00;
-    color: var(--text-dark);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
-    
-    h1#header-main {
-        font-size: 2.2em;
-        padding: 20px;
-    }
-    
-    .emergency-list {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .emergency-list button {
-        font-size: 1.1em;
-        padding: 18px 20px;
-        min-height: 75px;
-    }
-    
-    .timer-display {
-        font-size: 2.8em;
-    }
-    
-    .map-controls, .timer-controls {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .timer-controls button, .map-controls button {
-        width: 100%;
-        max-width: 280px;
-    }
-    
-    #visitor-counter {
-        bottom: 15px;
-        right: 15px;
-        font-size: 0.8em;
-        padding: 10px 16px;
-    }
-    
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    #map {
-        height: 500px;
-        width: 100%;
-    border-radius: 8px;
-    margin: 10px 0;
-    z-index: 1;
-    }
-    
-    .menu-toggle {
-        top: 15px;
-        right: 15px;
-        width: 50px;
-        height: 50px;
-        font-size: 1.3em;
-    }
-}
-
-@media (max-width: 480px) {
-    .emergency-list {
-        grid-template-columns: 1fr;
-    }
-    
-    a#call-emergency {
-        max-width: 300px;
-        font-size: 1.2em;
-        padding: 18px 30px;
-    }
-    
-    .timer-display {
-        font-size: 2.2em;
-    }
-    
-    #map {
-        height: 250px;
-    }
-    
-    .menu-toggle {
-        top: 10px;
-        right: 10px;
-        width: 45px;
-        height: 45px;
-        font-size: 1.2em;
-    }
-}
-
-/* Animation for buttons */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.emergency-list button:active, .timer-controls button:active, .map-controls button:active {
-    animation: pulse 0.3s ease;
-}
+.emergency-list button:nth-child(1) { animation-delay: 0.1s; }
+.emergency-list button:nth-child(2) { animation-delay: 0.2s; }
+.emergency-list button:nth-child(3) { animation-delay: 0.3s; }
+.emergency-list button:nth-child(4) { animation-delay: 0.4s; }
+.emergency-list button:nth-child(5) { animation-delay: 0.5s; }
+.emergency-list button:nth-child(6) { animation-delay: 0.6s; }
+.emergency-list button:nth-child(7) { animation-delay: 0.7s; }
+.emergency-list button:nth-child(8) { animation-delay: 0.8s; }
+.emergency-list button:nth-child(9) { animation-delay: 0.9s; }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%);
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--bright-blue);
-    border-radius: 6px;
+    background: var(--gradient-primary);
+    border-radius: 5px;
+    border: 2px solid #e2e8f0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--bright-teal);
-}
-
-/* ===== HEADER WITH OVERLAPPING LOGO ===== */
-.header-container {
-    position: relative;
-    display: block;
-}
-
-.header-logo {
-    position: absolute;
-    left: 60px;
-    top: 1px;
-    bottom: 1px; /* Moved higher up */
-    width: 130px;
-    height: 130px;
-    object-fit: contain;
-    z-index: 2;
-    
+    background: var(--primary-dark);
 }
