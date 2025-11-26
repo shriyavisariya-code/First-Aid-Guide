@@ -38,17 +38,18 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     padding: 0;
+    font-size: 16px; /* Base font size for mobile */
 }
 
 /* Menu Toggle */
 .menu-toggle {
     position: fixed;
-    top: 15px;
-    right: 15px;
+    top: 20px;
+    right: 20px;
     background: var(--gradient-primary);
     color: white;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -57,7 +58,8 @@ body {
     z-index: 1000;
     box-shadow: var(--shadow-lg);
     transition: all 0.3s ease;
-    border: 2px solid white;
+    border: 3px solid white;
+    font-size: 1.5rem;
 }
 
 .menu-toggle:hover {
@@ -74,7 +76,7 @@ body {
     height: 100vh;
     background: linear-gradient(180deg, var(--surface) 0%, #f8fafc 100%);
     box-shadow: var(--shadow-lg);
-    padding: 80px 20px 20px;
+    padding: 90px 25px 25px;
     overflow-y: auto;
     transition: right 0.3s ease;
     z-index: 999;
@@ -88,9 +90,9 @@ body {
 /* Language Selector */
 .language-selector {
     background: var(--surface);
-    padding: 20px;
+    padding: 25px;
     border-radius: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     box-shadow: var(--shadow);
     border: 2px solid var(--primary-light);
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
@@ -98,18 +100,18 @@ body {
 
 .language-selector label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-weight: 700;
     color: var(--primary);
-    font-size: 1.1rem;
+    font-size: 1.3rem;
 }
 
 /* Timer Section */
 .timer-section {
     background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
-    padding: 20px;
+    padding: 25px;
     border-radius: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     box-shadow: var(--shadow);
     border: 2px solid var(--accent);
     position: relative;
@@ -128,8 +130,8 @@ body {
 
 .timer-section h2 {
     color: var(--primary);
-    margin-bottom: 10px;
-    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -137,42 +139,42 @@ body {
 
 .timer-section h2::before {
     content: '⏱️';
-    font-size: 1.2em;
+    font-size: 1.4em;
 }
 
 .timer-display {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     text-align: center;
     background: var(--gradient-warning);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 15px 0;
+    margin: 20px 0;
     font-family: 'Courier New', monospace;
     background-color: var(--background);
-    padding: 15px;
+    padding: 20px;
     border-radius: 12px;
     border: 3px dashed var(--warning);
 }
 
 .timer-controls {
     display: flex;
-    gap: 8px;
+    gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
 .timer-controls button {
-    padding: 12px 20px;
+    padding: 16px 24px;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: var(--shadow);
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     flex: 1;
-    min-width: 80px;
+    min-width: 100px;
 }
 
 #start-timer {
@@ -198,9 +200,9 @@ body {
 /* Map Section */
 .map-section {
     background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
-    padding: 20px;
+    padding: 25px;
     border-radius: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     box-shadow: var(--shadow);
     border: 2px solid var(--info);
     position: relative;
@@ -218,8 +220,8 @@ body {
 
 .map-section h2 {
     color: var(--primary);
-    margin-bottom: 10px;
-    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -227,29 +229,29 @@ body {
 
 .map-section h2::before {
     content: '📍';
-    font-size: 1.2em;
+    font-size: 1.4em;
 }
 
 .map-controls {
     display: flex;
-    gap: 8px;
-    margin-bottom: 15px;
+    gap: 12px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
 }
 
 .map-controls button {
-    padding: 12px 16px;
+    padding: 16px 20px;
     background: var(--gradient-primary);
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
     flex: 1;
     box-shadow: var(--shadow);
-    font-size: 0.9rem;
-    min-width: 120px;
+    font-size: 1.1rem;
+    min-width: 140px;
 }
 
 .map-controls button:hover {
@@ -258,9 +260,9 @@ body {
 }
 
 #map {
-    height: 200px;
+    height: 250px;
     border-radius: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     border: 2px solid var(--primary-light);
     box-shadow: var(--shadow);
 }
@@ -270,24 +272,25 @@ body {
     overflow-y: auto;
     background: var(--background);
     border-radius: 8px;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid var(--border);
 }
 
 .loading {
     text-align: center;
     color: var(--text-secondary);
-    padding: 20px;
+    padding: 25px;
     font-style: italic;
+    font-size: 1.1rem;
 }
 
 /* Header */
 .header-container {
     background: var(--gradient-primary);
     color: white;
-    padding: 40px 20px;
+    padding: 50px 25px;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     position: relative;
     overflow: hidden;
 }
@@ -304,17 +307,17 @@ body {
 }
 
 .header-logo {
-    height: 70px;
-    margin-bottom: 15px;
+    height: 80px;
+    margin-bottom: 20px;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
     position: relative;
     z-index: 1;
 }
 
 #header-main {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     font-weight: 800;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     position: relative;
     z-index: 1;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
@@ -322,7 +325,7 @@ body {
 }
 
 #sub-header {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     opacity: 0.95;
     position: relative;
     z-index: 1;
@@ -336,25 +339,25 @@ body {
     width: 90%;
     max-width: 400px;
     margin: 0 auto;
-    padding: 16px 25px;
+    padding: 20px 30px;
     background: var(--gradient-emergency);
     color: white;
     text-decoration: none;
     text-align: center;
     border-radius: 15px;
     font-weight: 800;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     box-shadow: var(--shadow-lg);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    border: 2px solid white;
+    border: 3px solid white;
 }
 
 #call-emergency::before {
     content: '🚑';
-    margin-right: 10px;
-    font-size: 1.3em;
+    margin-right: 12px;
+    font-size: 1.5em;
 }
 
 #call-emergency:hover {
@@ -373,13 +376,13 @@ body {
 #emergencies-heading {
     text-align: center;
     color: var(--text-primary);
-    margin: 25px 0;
-    font-size: 1.8rem;
+    margin: 30px 0;
+    font-size: 2rem;
     background: linear-gradient(135deg, var(--primary) 0%, var(--info) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
-    padding: 0 15px;
+    padding: 0 20px;
 }
 
 /* Search Bar */
@@ -388,10 +391,10 @@ body {
     max-width: 500px;
     margin: 0 auto;
     display: block;
-    padding: 16px 20px;
+    padding: 18px 25px;
     border: 3px solid var(--primary-light);
     border-radius: 15px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     transition: all 0.3s ease;
     box-shadow: var(--shadow);
@@ -406,24 +409,25 @@ body {
 
 #search-bar::placeholder {
     color: var(--text-light);
+    font-size: 1.1rem;
 }
 
 /* Emergency List - All buttons same color */
 .emergency-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 15px;
-    padding: 0 15px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .emergency-list button {
-    padding: 20px 15px;
+    padding: 25px 20px;
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     border: 3px solid var(--emergency-btn);
     border-radius: 15px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.4s ease;
@@ -432,6 +436,10 @@ body {
     overflow: hidden;
     box-shadow: var(--shadow);
     color: var(--emergency-btn);
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .emergency-list button::before {
@@ -461,31 +469,32 @@ body {
 #disclaimer-text {
     text-align: center;
     color: var(--text-secondary);
-    padding: 0 15px;
+    padding: 0 20px;
     max-width: 800px;
-    margin: 25px auto;
-    font-size: 0.9rem;
+    margin: 30px auto;
+    font-size: 1rem;
     background: linear-gradient(135deg, #fef3c7 0%, #fef7cd 100%);
-    padding: 15px;
+    padding: 20px;
     border-radius: 12px;
     border-left: 4px solid var(--warning);
     box-shadow: var(--shadow);
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 #disclaimer-text strong {
     color: var(--warning);
+    font-size: 1.1rem;
 }
 
 /* Visitor Counter */
 #visitor-counter {
     text-align: center;
-    padding: 15px;
+    padding: 20px;
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    margin: 25px auto;
+    margin: 30px auto;
     border-radius: 15px;
     box-shadow: var(--shadow-lg);
-    max-width: 200px;
+    max-width: 220px;
     border: 2px solid var(--primary-light);
     position: relative;
 }
@@ -493,24 +502,24 @@ body {
 #visitor-counter::before {
     content: '👥';
     position: absolute;
-    top: -12px;
+    top: -15px;
     left: 50%;
     transform: translateX(-50%);
     background: var(--primary);
     color: white;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 
 #visitor-count {
     font-weight: 800;
     color: var(--primary);
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -520,8 +529,8 @@ body {
 .footer {
     background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
     color: white;
-    padding: 40px 20px 20px;
-    margin-top: 40px;
+    padding: 50px 25px 25px;
+    margin-top: 50px;
     position: relative;
 }
 
@@ -538,15 +547,15 @@ body {
 .footer-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    gap: 35px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .footer h3 {
     color: var(--primary-light);
-    margin-bottom: 15px;
-    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
     font-weight: 700;
 }
 
@@ -554,7 +563,9 @@ body {
     color: white;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 8px;
 }
 
 .footer-contact a:hover {
@@ -566,37 +577,37 @@ body {
 .legal-links {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .faq-link {
     color: var(--text-light);
     text-decoration: none;
     transition: all 0.3s ease;
-    padding: 4px 0;
-    font-size: 0.9rem;
+    padding: 6px 0;
+    font-size: 1rem;
 }
 
 .faq-link:hover {
     color: white;
     transform: translateX(8px);
     background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent);
-    padding-left: 8px;
+    padding-left: 12px;
 }
 
 .social-icons {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     justify-content: center;
 }
 
 .social-icon {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     transition: all 0.3s ease;
     background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
-    border-radius: 10px;
+    padding: 12px;
+    border-radius: 12px;
 }
 
 .social-icon:hover {
@@ -607,215 +618,291 @@ body {
 
 .footer-bottom {
     text-align: center;
-    margin-top: 30px;
-    padding-top: 20px;
+    margin-top: 35px;
+    padding-top: 25px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--text-light);
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
-/* Enhanced Responsive Design */
+/* Enhanced Responsive Design - MOBILE FIRST APPROACH */
 @media (max-width: 1200px) {
     .emergency-list {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
     }
 }
 
+/* Tablet */
 @media (max-width: 768px) {
     body {
         padding: 0;
+        font-size: 17px; /* Slightly larger base font for tablets */
     }
 
     .header-container {
-        padding: 30px 15px;
-        margin-bottom: 20px;
+        padding: 40px 20px;
+        margin-bottom: 30px;
     }
 
     #header-main {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
     }
 
     #sub-header {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .header-logo {
-        height: 60px;
+        height: 70px;
     }
 
     #emergencies-heading {
-        font-size: 1.5rem;
-        margin: 20px 0;
+        font-size: 1.8rem;
+        margin: 25px 0;
     }
 
     .emergency-list {
         grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 0 10px;
+        gap: 15px;
+        padding: 0 15px;
     }
 
     .emergency-list button {
-        padding: 18px 12px;
-        font-size: 0.95rem;
+        padding: 22px 18px;
+        font-size: 1.1rem;
+        min-height: 70px;
     }
 
     #search-bar {
         width: 95%;
-        padding: 14px 18px;
-        font-size: 0.95rem;
+        padding: 16px 22px;
+        font-size: 1.1rem;
     }
 
     #call-emergency {
         width: 95%;
-        padding: 14px 20px;
-        font-size: 1.1rem;
+        padding: 18px 25px;
+        font-size: 1.3rem;
     }
 
     .footer-container {
         grid-template-columns: 1fr;
-        gap: 25px;
+        gap: 30px;
         text-align: center;
     }
 
     .footer {
-        padding: 30px 15px 15px;
-        margin-top: 30px;
+        padding: 40px 20px 20px;
+        margin-top: 40px;
     }
 
     .menu-toggle {
-        top: 10px;
-        right: 10px;
-        width: 45px;
-        height: 45px;
+        top: 15px;
+        right: 15px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.4rem;
     }
 
     .collapsible-sections {
-        padding: 70px 15px 15px;
+        padding: 80px 20px 20px;
     }
 
     .timer-section,
     .map-section {
-        padding: 15px;
+        padding: 20px;
     }
 
     .timer-display {
-        font-size: 1.8rem;
-        padding: 12px;
+        font-size: 2.2rem;
+        padding: 18px;
     }
 
     .timer-controls button {
-        padding: 10px 16px;
-        font-size: 0.85rem;
-    }
-
-    .map-controls button {
-        padding: 10px 14px;
-        font-size: 0.85rem;
-    }
-
-    #map {
-        height: 180px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-container {
-        padding: 25px 10px;
-    }
-
-    #header-main {
-        font-size: 1.6rem;
-    }
-
-    #sub-header {
-        font-size: 0.9rem;
-    }
-
-    .header-logo {
-        height: 50px;
-    }
-
-    #emergencies-heading {
-        font-size: 1.3rem;
-    }
-
-    .emergency-list {
-        padding: 0 8px;
-    }
-
-    .emergency-list button {
-        padding: 16px 10px;
-        font-size: 0.9rem;
-    }
-
-    #search-bar {
-        width: 98%;
-        padding: 12px 16px;
-    }
-
-    #call-emergency {
-        width: 98%;
-        padding: 12px 18px;
+        padding: 14px 20px;
         font-size: 1rem;
     }
 
+    .map-controls button {
+        padding: 14px 18px;
+        font-size: 1rem;
+    }
+
+    #map {
+        height: 220px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    body {
+        font-size: 18px; /* Even larger base font for mobile */
+    }
+
+    .header-container {
+        padding: 35px 15px;
+    }
+
+    #header-main {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+
+    #sub-header {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    .header-logo {
+        height: 65px;
+    }
+
+    #emergencies-heading {
+        font-size: 1.6rem;
+        margin: 25px 15px;
+    }
+
+    .emergency-list {
+        padding: 0 12px;
+        gap: 12px;
+    }
+
+    .emergency-list button {
+        padding: 20px 15px;
+        font-size: 1.1rem;
+        min-height: 65px;
+        border-radius: 12px;
+    }
+
+    #search-bar {
+        width: 95%;
+        padding: 16px 20px;
+        font-size: 1.1rem;
+        border-radius: 12px;
+    }
+
+    #call-emergency {
+        width: 95%;
+        padding: 18px 22px;
+        font-size: 1.2rem;
+        border-radius: 12px;
+    }
+
     .menu-toggle {
-        width: 40px;
-        height: 40px;
-        top: 8px;
-        right: 8px;
+        width: 50px;
+        height: 50px;
+        top: 12px;
+        right: 12px;
+        font-size: 1.3rem;
     }
 
     .timer-display {
-        font-size: 1.6rem;
+        font-size: 2rem;
+        padding: 16px;
     }
 
     .timer-controls,
     .map-controls {
         flex-direction: column;
+        gap: 10px;
     }
 
     .timer-controls button,
     .map-controls button {
         width: 100%;
+        padding: 16px;
+        font-size: 1.1rem;
+        border-radius: 10px;
     }
 
     #visitor-counter {
-        max-width: 180px;
-        padding: 12px;
+        max-width: 200px;
+        padding: 18px;
     }
 
     #visitor-count {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
 
     .footer {
-        padding: 25px 10px 10px;
+        padding: 35px 15px 15px;
+        margin-top: 35px;
     }
 
     .social-icons {
-        gap: 12px;
+        gap: 15px;
     }
 
     .social-icon {
-        font-size: 1.3rem;
-        padding: 8px;
+        font-size: 1.6rem;
+        padding: 10px;
+    }
+
+    #disclaimer-text {
+        margin: 25px 15px;
+        padding: 18px;
+        font-size: 0.95rem;
     }
 }
 
+/* Small Mobile */
 @media (max-width: 360px) {
+    body {
+        font-size: 16px;
+    }
+
     #header-main {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
     }
 
     .emergency-list button {
-        padding: 14px 8px;
-        font-size: 0.85rem;
+        padding: 18px 12px;
+        font-size: 1rem;
+        min-height: 60px;
     }
 
     .timer-display {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
+    }
+
+    #call-emergency {
+        font-size: 1.1rem;
+        padding: 16px 20px;
+    }
+
+    .menu-toggle {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 320px) {
+    .header-container {
+        padding: 30px 12px;
+    }
+
+    #header-main {
+        font-size: 1.6rem;
+    }
+
+    .emergency-list {
+        padding: 0 10px;
+    }
+
+    .emergency-list button {
+        padding: 16px 10px;
+        font-size: 0.95rem;
+    }
+
+    #search-bar {
+        padding: 14px 18px;
+    }
+
+    .timer-display {
+        font-size: 1.6rem;
     }
 }
 
@@ -875,10 +962,6 @@ body {
         transform: none;
     }
     
-    .back-button:hover {
-        transform: none;
-    }
-    
     .timer-controls button:hover,
     .map-controls button:hover {
         transform: none;
@@ -886,6 +969,14 @@ body {
     
     .social-icon:hover {
         transform: none;
+    }
+
+    /* Increase touch targets for mobile */
+    .emergency-list button,
+    .timer-controls button,
+    .map-controls button,
+    #call-emergency {
+        min-height: 44px; /* Apple's recommended minimum touch target size */
     }
 }
 
@@ -895,5 +986,33 @@ body {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary: #0000ff;
+        --secondary: #ff0000;
+        --text-primary: #000000;
+        --background: #ffffff;
+        --surface: #ffffff;
+        --border: #000000;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0f172a;
+        --surface: #1e293b;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --text-light: #94a3b8;
+        --border: #334155;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     }
 }
