@@ -937,7 +937,7 @@ h2 {
 }
 
 .privacy-section h2 {
-    color: var(--bright-blue);
+    color:var(--white);
     margin-bottom: 15px;
     font-size: 1.5em;
     border-bottom: 2px solid var(--bright-teal);
@@ -1049,7 +1049,7 @@ h2 {
 }
 
 .terms-section h2 {
-    color: var(--bright-blue);
+    color:var(--white);
     margin-bottom: 15px;
     font-size: 1.5em;
     border-bottom: 2px solid var(--bright-teal);
