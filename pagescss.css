@@ -77,7 +77,7 @@ header {
 }
 
 h1 {
-    color: white;
+    color: crimson;
     font-size: 2.5rem;
     font-weight: 800;
     margin-bottom: 15px;
@@ -94,7 +94,7 @@ h1 {
     z-index: 1;
     font-weight: 500;
     line-height: 1.4;
-    color: white;
+    color: crimson;
 }
 
 /* Back Button */
@@ -179,6 +179,7 @@ ul li {
 }
 
 ul li:hover {
+    background: cornflowerblue;
     transform: translateX(5px);
     box-shadow: var(--shadow-lg);
 }

@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ===== MAP FUNCTIONALITY =====
-// ===== MAP FUNCTIONALITY =====
 let map;
 let userLocation = null;
 let userMarker = null;

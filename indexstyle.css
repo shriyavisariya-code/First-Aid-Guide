@@ -414,7 +414,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* Emergency List - All buttons same color */
+/* Emergency List */
 .emergency-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
