@@ -141,6 +141,7 @@ h2 {
     font-weight: 700;
     background: linear-gradient(135deg, var(--primary) 0%, var(--info) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     padding: 0 20px;
 }
@@ -153,6 +154,7 @@ h3 {
     font-weight: 600;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
